@@ -8,6 +8,7 @@ venv/
 .env.*
 !.env.example
 data/*.sqlite*
+!data/seed.sqlite
 data/*.log
 data/server-process.json
 public/data/china.json

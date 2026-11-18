@@ -7,7 +7,7 @@ AI Coding 实战训练项目。以虚拟终端经营数据为基础，展示收�
 - 展示省份收入、销量、完成率及同比；使用空间热力图、月度折线图和渠道占比环形图。
 - 点击省份或省份列表进入一级详情，查看品类、渠道和当前省份的模拟 AI 诊断。
 - 后端通过 WebSocket 推送模拟数据更新、告警和重置；支持预设问题的规则模拟回答。
-- 虚拟数据可用固定种子重新生成；不连接企业系统或真实经营数据。
+- 仓库提供现成的虚拟数据库 `data/seed.sqlite`，也可用固定种子重新生成；不连接企业系统或真实经营数据。
 
 技术：React 19、JavaScript、Vite 6、ECharts 5、Python、FastAPI、SQLite 和 WebSocket。
 
@@ -16,7 +16,7 @@ AI Coding 实战训练项目。以虚拟终端经营数据为基础，展示收�
 Windows 环境需要 Python 3.10 以上和 Node.js（推荐 22），并确保命令行能找到 `python` 和 `npm`。
 
 1. 克隆或下载本仓库并完整解压。
-2. 双击 `install.cmd`，联网安装依赖、生成虚拟数据库、下载学习交流用地图并构建前端。
+2. 双击 `install.cmd`，联网安装依赖、下载学习交流用地图并构建前端；默认使用仓库内提供的虚拟数据库。
 3. 双击 `start.cmd`，浏览器打开 `http://127.0.0.1:8765/`。
 4. 演示结束双击 `stop.cmd`。端口被占用时不会停止其他进程。
 
@@ -25,13 +25,12 @@ Windows 环境需要 Python 3.10 以上和 Node.js（推荐 22），并确保命
 ```powershell
 python -m pip install -r requirements.txt
 npm ci
-python scripts/generate_seed.py --output data/seed.sqlite
 python scripts/prepare_map.py
 npm run build
 python -m uvicorn backend.app:app --host 127.0.0.1 --port 8765
 ```
 
-数据库生成脚本不会覆盖现有文件；已有 `data/seed.sqlite` 时跳过生成命令。`install.cmd` 在缺失时才生成。安装过程需要网络；之后运行使用本地资源。
+仓库已经包含 `data/seed.sqlite`：31 个省级区域、333,312 条虚拟日报和 1,984 条虚拟年度目标。若数据库缺失，`install.cmd` 会自动重新生成；也可在文件不存在时手动运行 `python scripts/generate_seed.py --output data/seed.sqlite`。生成脚本不会覆盖已有文件。安装过程需要网络；之后运行使用本地资源。
 
 ## 演示说明
 
